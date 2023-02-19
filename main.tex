@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{csquotes}
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{refs.bib}
+\usepackage[logic, complexity]{commondefns}
+\usepackage{bussproofs}
+
+\title{Lower Bounds for the Polynomial Calculus via the "Pigeon Dance"}
+\author{Imogen Hergeth}
+\date{January 2023}
+
+
+\newcommand{\Sn}{S_n(\KK)}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+One of the leading open questions in complexity theory is that of $\NP \queq \co\NP$. A possible avenue to showing $\NP \neq \co\NP$ is proving that no proof system admits a polynomial size refutation of some unsatisfiable formula. While there has not been such a proof there has been much research towards it, showing much smaller lower bounds for particular proof systems. In this article we will discuss one such result as first presented in \cite{raz}.\\
+This deals with proofs in the polynomial calculus. Similar to proofs in the sequence calculus or Frege systems these consist of an directed acyclic graph where the vertices are lines connected by inferences. The difference to the other two systems is that lines are polynomials and the rules of inference are given by arithmetic operations of these. In particular we will consider polynomials in the \KK-algebra $\Sn = \KK[x_1, \ldots, x_n] / \{(x_i^2 - x_i)\KK \mid i \in [n] \}$, i.e. the ring of multivariate polynomials with $n$ indeterminants over some fixed field \KK. There are two rules of inference, addition
+\begin{prooftree}
+    \AxiomC{f}
+    \AxiomC{g}
+    \BinaryInfC{af + b g}
+\end{prooftree}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\printbibliography
+\end{document}

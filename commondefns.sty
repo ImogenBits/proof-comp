@@ -1,0 +1,219 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{commondefns}[2022/09/10 Commonly used packages and macros]
+\RequirePackage{xkeyval, etoolbox, xspace}
+\xspaceaddexceptions{]\}}
+
+\newcommand{\option}[1]{
+    \DeclareOptionX{#1}{
+        \expandafter\providecommand\csname #1\endcsname{True}
+    }
+}
+\newcommand{\optionimpliesnot}[2]{
+    \DeclareOptionX{#1}{
+        \expandafter\providecommand\csname #1\endcsname{True}
+        \expandafter\def\csname #2\endcsname{}
+    }
+}
+
+\option{notext}
+\option{nomath}
+\option{keepvarletters}
+\optionimpliesnot{logic}{nomath}
+\option{complexity}
+\option{graphs}
+\option{rwthcolors}
+\option{theorems}
+\ProcessOptionsX
+\let\option\undefined
+
+
+% general text layout improvements
+\ifdefvoid{\notext}{
+    \RequirePackage[dvipsnames]{xcolor}         % better color names
+    \RequirePackage[T1]{fontenc}                % better font encoding
+    \RequirePackage{lmodern}                    % font with better glyphs
+    \RequirePackage[ngerman, english]{babel}    % better hypenations
+    \RequirePackage{microtype}                  % general layout and rendering
+    \RequirePackage{graphicx}                   % actually usable graphics
+    \RequirePackage{pdfpages}                   % include pdfs
+    \RequirePackage{adjustbox}                  % control box placement
+    \RequirePackage{multicol}                   % better column env
+    \RequirePackage{booktabs}                   % better tables
+    \RequirePackage{hyperref}                   % pdf metadata and links
+    \RequirePackage{parskip}                    % par breaks via empty line, not indent
+    \hypersetup{
+        unicode,                                % use unicode encoding
+        colorlinks,                             % highlight links via color, not boxes
+        linkcolor=NavyBlue,                     % safe links are blue
+        citecolor=NavyBlue,
+        urlcolor=NavyBlue,
+        filecolor=BrickRed,                     % unsafe links are red
+        menucolor=BrickRed,
+        runcolor=BrickRed,
+        pdfstartview=,                          % default zoom is the pdf reader's user setting
+        bookmarksnumbered=true,                 % include section numbers in bookmarks
+        plainpages=false,                       % keep non arabic page numbers as references
+        hypertexnames=false,                    % use better link numbering
+    }
+}{}
+
+% math symbols
+\ifdefvoid{\nomath}{
+    \RequirePackage{amsmath, amsthm, amssymb, mathtools, stmaryrd}
+    \newcommand{\mathsc}[1]{\textnormal{\textsc{#1}}}
+    \newcommand{\RR}{\ensuremath{\mathbb{R}}\xspace}
+    \newcommand{\NN}{\ensuremath{\mathbb{N}}\xspace}
+    \newcommand{\ZZ}{\ensuremath{\mathbb{Z}}\xspace}
+    \newcommand{\QQ}{\ensuremath{\mathbb{Q}}\xspace}
+    \newcommand{\BB}{\ensuremath{\mathbb{B}}\xspace}
+    \newcommand{\KK}{\ensuremath{\mathbb{K}}\xspace}
+    \newcommand{\FF}{\ensuremath{\mathbb{F}}\xspace}
+    \newcommand{\xor}{\ensuremath{\oplus}\xspace}
+    \newcommand{\impl}{\ensuremath{\rightarrow}\xspace}
+    \newcommand{\restr}[2]{\ensuremath{\left.#1\right|_{#2}}}
+    \newcommand{\expans}[2]{\ensuremath{\left.#1\right|^{#2}}}
+
+    \renewcommand{\qedsymbol}{\square}
+    \renewcommand{\qed}{\hfill \ensuremath{\square}}
+    \newcommand{\contradiction}{\hfill \ensuremath{\lightning}}
+    \newcommand{\toiso}{\xrightarrow{\sim}}
+    \newcommand{\tomono}{\xhookrightarrow{}}
+    \newcommand{\toepi}{\twoheadrightarrow}
+    \DeclareMathOperator{\Ima}{Im}
+    \DeclareMathOperator{\Ker}{Ker}
+    \DeclareMathOperator{\dom}{dom}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\queq}{\overset{?}{=}}
+
+    \ifdefvoid{\keepvarletters}{
+        \let\ophi\phi
+        \renewcommand{\phi}{\varphi}
+        \renewcommand{\epsilon}{\varepsilon}
+    }{}
+}{}
+
+% theorem styles
+\ifdefvoid{\theorems}{}{
+    \theoremstyle{definition}
+    \newtheorem{theorem}{Theorem}[section]
+    \theoremstyle{definition}
+    \newtheorem{corollary}[theorem]{Corollary}
+    \theoremstyle{definition}
+    \newtheorem{definition}[theorem]{Definition}
+    \theoremstyle{definition}
+    \newtheorem{lemma}[theorem]{Lemma}
+    \theoremstyle{definition}
+    \newtheorem*{remark}{Remark}
+}
+
+% logic symbols
+\ifdefvoid{\logic}{}{
+    \newcommand{\A}{\ensuremath{\mathfrak A}\xspace}
+    \newcommand{\B}{\ensuremath{\mathfrak B}\xspace}
+    \newcommand{\I}{\ensuremath{\mathfrak I}\xspace}
+    \newcommand{\Th}{\ensuremath{\mathsf{Th}}\xspace}
+    \newcommand{\FO}{\ensuremath{\mathsf{FO}}\xspace}
+    \newcommand{\Mod}{\ensuremath{\mathsf{Mod}}\xspace}
+    \newcommand{\G}{\ensuremath{\mathcal G}\xspace}    % can cause problems with older TeX live versions
+    \newcommand{\K}{\ensuremath{\mathcal K}\xspace}
+    \newcommand{\yields}{\ensuremath{\vdash}\xspace}
+    \newcommand{\lfp}[2]{\left[\mathrm{lfp}\; #1\;.\; #2\right]}
+    \newcommand{\gfp}[2]{\left[\mathrm{gfp}\; #1\;.\; #2\right]}
+    \newcommand{\ifp}[2]{\left[\mathrm{ifp}\; #1\;.\; #2\right]}
+    \newcommand{\dfp}[2]{\left[\mathrm{dfp}\; #1\;.\; #2\right]}
+    \newcommand{\stage}[1]{\prec_{#1}}
+    \newcommand{\stageeq}[1]{\preceq_{#1}}
+    \newcommand{\stageinf}[1]{\stage{#1}^{\mathrm{inf}}}
+    \newcommand{\stageinfeq}[1]{\stageeq{#1}^{\mathrm{inf}}}
+}
+
+% complexity classes
+\ifdefvoid{\complexity}{}{
+    \newcommand{\bigO}{\ensuremath{\mathcal{O}}}
+
+    \newcommand{\TM}{\ensuremath{\mathrm{TM}}\xspace}
+    \newcommand{\DTM}{\ensuremath{\mathrm{DTM}}\xspace}
+    \newcommand{\NTM}{\ensuremath{\mathrm{NTM}}\xspace}
+    \newcommand{\PTM}{\ensuremath{\mathrm{PTM}}\xspace}
+    \newcommand{\ATM}{\ensuremath{\mathrm{ATM}}\xspace}
+    \newcommand{\DBA}{\ensuremath{\mathrm{DBA}}\xspace}
+    \newcommand{\NBA}{\ensuremath{\mathrm{NBA}}\xspace}
+    \newcommand{\GNBA}{\ensuremath{\mathrm{GNBA}}\xspace}
+
+    \newcommand{\co}{\ensuremath{\mathsf{co}}}
+    \newcommand{\re}{\ensuremath{\mathsf{r.e.}}\xspace}
+    \newcommand{\TIME}{\ensuremath{\mathsf{TIME}}\xspace}
+    \newcommand{\NTIME}{\ensuremath{\mathsf{NTIME}}\xspace}
+    \newcommand{\DTIME}{\ensuremath{\mathsf{DTIME}}\xspace}
+    \newcommand{\SPACE}{\ensuremath{\mathsf{SPACE}}\xspace}
+    \newcommand{\NSPACE}{\ensuremath{\mathsf{NSPACE}}\xspace}
+    \newcommand{\DSPACE}{\ensuremath{\mathsf{DSPACE}}\xspace}
+
+    \newcommand{\Pc}{\ensuremath{\mathsf{P}}\xspace}
+    \newcommand{\NP}{\ensuremath{\mathsf{NP}}\xspace}
+    \newcommand{\NPC}{\ensuremath{\mathsf{NPC}}\xspace}
+    \newcommand{\EXP}{\ensuremath{\mathsf{EXP}}\xspace}
+    \newcommand{\NEXP}{\ensuremath{\mathsf{NEXP}}\xspace}
+
+    \newcommand{\PSPACE}{\ensuremath{\mathsf{PSPACE}}\xspace}
+    \newcommand{\EXPSPACE}{\ensuremath{\mathsf{EXPSPACE}}\xspace}
+    \newcommand{\NEXPSPACE}{\ensuremath{\mathsf{NEXPSPACE}}\xspace}
+    \newcommand{\Lc}{\ensuremath{\mathsf{L}}\xspace}
+    \newcommand{\NL}{\ensuremath{\mathsf{NL}}\xspace}
+}
+
+% graphs
+\ifdefvoid{\graphs}{}{
+    \RequirePackage{tikz}
+    \usetikzlibrary{calc, tikzmark, backgrounds, scopes, positioning, arrows.meta, graphs, automata,
+                    decorations.markings, decorations.pathmorphing, decorations.pathreplacing, decorations.shapes}
+    \tikzset{every picture/.style={thick, >={Stealth[round]}}}
+    \tikzset{every node/.style={circle}}
+    \tikzset{dot/.style={circle, fill, inner sep=1.75pt}}
+    \tikzset{letters/.style={fill=none, inner sep=.5pt}}
+    \tikzset{outline/.style={circle, inner sep=1.5pt, minimum size=12pt, draw}}
+    \tikzset{snake/.style={decorate, decoration=snake}}
+    \tikzset{automaton/.style={on grid, auto, initial text={}, node distance=3cm}}
+}
+
+% rwth colors
+\ifdefvoid{\rwthcolors}{}{
+    \definecolor{rwth-blue}{cmyk}{1,.5,0,0}
+        \colorlet{rwth-lblue}{rwth-blue!50}
+        \colorlet{rwth-llblue}{rwth-blue!25}
+    \definecolor{rwth-violet}{cmyk}{.6,.6,0,0}
+        \colorlet{rwth-lviolet}{rwth-violet!50}
+        \colorlet{rwth-llviolet}{rwth-violet!25}
+    \definecolor{rwth-purple}{cmyk}{.7,1,.35,.15}
+        \colorlet{rwth-lpurple}{rwth-purple!50}
+        \colorlet{rwth-llpurple}{rwth-purple!25}
+    \definecolor{rwth-carmine}{cmyk}{.25,1,.7,.2}
+        \colorlet{rwth-lcarmine}{rwth-carmine!50}
+        \colorlet{rwth-llcarmine}{rwth-carmine!25}
+    \definecolor{rwth-red}{cmyk}{.15,1,1,0}
+        \colorlet{rwth-lred}{rwth-red!50}
+        \colorlet{rwth-llred}{rwth-red!25}
+    \definecolor{rwth-magenta}{cmyk}{0,1,.25,0}
+        \colorlet{rwth-lmagenta}{rwth-magenta!50}
+        \colorlet{rwth-llmagenta}{rwth-magenta!25}
+    \definecolor{rwth-orange}{cmyk}{0,.4,1,0}
+        \colorlet{rwth-lorange}{rwth-orange!50}
+        \colorlet{rwth-llorange}{rwth-orange!25}
+    \definecolor{rwth-yellow}{cmyk}{0,0,1,0}
+        \colorlet{rwth-lyellow}{rwth-yellow!50}
+        \colorlet{rwth-llyellow}{rwth-yellow!25}
+    \definecolor{rwth-grass}{cmyk}{.35,0,1,0}
+        \colorlet{rwth-lgrass}{rwth-grass!50}
+        \colorlet{rwth-llgrass}{rwth-grass!25}
+    \definecolor{rwth-green}{cmyk}{.7,0,1,0}
+        \colorlet{rwth-lgreen}{rwth-green!50}
+        \colorlet{rwth-llgreen}{rwth-green!25}
+    \definecolor{rwth-cyan}{cmyk}{1,0,.4,0}
+        \colorlet{rwth-lcyan}{rwth-cyan!50}
+        \colorlet{rwth-llcyan}{rwth-cyan!25}
+    \definecolor{rwth-teal}{cmyk}{1,.3,.5,.3}
+        \colorlet{rwth-lteal}{rwth-teal!50}
+        \colorlet{rwth-llteal}{rwth-teal!25}
+    \definecolor{rwth-gold}{cmyk}{.35,.46,.7,.35}
+    \definecolor{rwth-silver}{cmyk}{.39,.31,.32,.14}
+}
