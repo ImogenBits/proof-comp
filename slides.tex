@@ -233,16 +233,16 @@
     \begin{theorem}<+->
         $x_{i_1, j_1} \cdots x_{i_d, j_d} \in \Delta_I$ if and only if there is a $j' > j_1$ such that $\K(x_{i_1, j'} \cdots x_{i_d, j_d}) \in \Delta_I$.
     \end{theorem}
-    \begin{proof}[Proof\nopunct]<->
+    \begin{proof}[Proof\nopunct]<+->
         This operator effectively moves the first pigeon to an empty hole and then kills it. This is the same as each step in the dance, where the first pigeon flies to some free hole to its right and then occupies it.
     \end{proof}
 \end{frame}
 
-\begin{frame}{Properties of $\K$}
+\begin{frame}{Properties of $\K$ (cont.)}
      \begin{theorem}<+->
         $\Delta_I$ is closed under $\K$.
      \end{theorem}
-    \begin{proof}[Proof\nopunct]<->
+    \begin{proof}[Proof\nopunct]<+->
         If $t \in \Delta_I$ then the pigeons can complete their dance. During this the first pigeon will start at $j$ and fly to $j'$. Killing the pigeon frees up $j'$ so any other pigeon that wanted to use $j$ can use it instead.
     \end{proof}
 \end{frame}
@@ -251,7 +251,7 @@
     \begin{theorem}<+->
         If $|I| \leq (n+1) / 2, t \in D_I$ and the minimal element $i$ of $I$ is not in $\dom(t)$, then there exists a $j \in [n]$ such that $\K(x_{ij} t) \in \Delta_I$.
     \end{theorem}
-    \begin{proof}[Proof\nopunct]<+->
+    \begin{proof}[Proof\nopunct{}]<+->
         At most $$
             |\dom(t)| \leq |I \setminus \{i\}| \leq \frac{n - 1}{2}
         $$ pigeons involved in the dance, each occupying two holes. Thus the total number of holes is $n - 1$ and one hole $j$ remains free. For the purposes of the dance, $\K(x_{ij} \cdot t)$ is the same as $t$ since the only difference is $j$ being moved to the left.
