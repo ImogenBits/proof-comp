@@ -68,7 +68,38 @@
     \end{itemize}
 \end{frame}
 
-\subsection{The pigeonhole principle}
+\begin{frame}{Example proof}
+    \begin{itemize}[<+->]
+        \item Try to prove $xy + z$ from $x + 1$ and $z$
+    \end{itemize}
+    \begin{prooftree}
+        \AxiomC{$x+1$}
+        \LeftLabel{$(\cdot y)$}
+        \UnaryInfC{$xy + y$}
+        \AxiomC{$z$}
+        \RightLabel{$(+)$}
+        \BinaryInfC{$xy + y + z$}
+    \end{prooftree}
+    \begin{itemize}[<+->]
+        \item There is no way to prove $y$ from $x+1$ and $z$
+        \item We can not prove $xy + z$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Algebraic view of proofs}
+    \begin{itemize}[<+->]
+        \item $V$ are polynomials we can prove
+        \item $\Delta$ are leading terms of ones we can not prove
+        \item $\Sn \cong \KK \Delta \oplus V$
+        \item $R$ is the projection onto $\Delta$
+        \item Similarly:\\
+            $V_d, \Delta_d, R_d$ for polynomials up to degree $d$\\
+            $V_I, \Delta_I, R_I$ for polynomials using variables from $I$
+    \end{itemize}
+\end{frame}
+
+\section{The Pigeonhole Principle}
+\subsection{Overview}
 \begin{frame}{The pigeonhole principle}
     \begin{itemize}[<+->]
         \item If there are $m$ pigeons, $n$ pigeon holes, and $m > n$ then at least two pigeons have to share a hole
@@ -84,40 +115,12 @@
     \end{definition}
 \end{frame}
 
-\begin{frame}{Provability as a linear operator}
-    \begin{itemize}[<+->]
-        \item We 
-    \end{itemize}
-\end{frame}
-
-\section{Main result}
-\subsection{Overview}
-\begin{frame}{Theorem}
+\begin{frame}{Main result}
     \begin{theorem}<+->
         For any $m > n$, every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
     \end{theorem}
     \begin{itemize}[<+->]
-        \item Pigeonhole principle is locally consistent
-        \item Polynomial calculus preserves local validity
-        \item Only large terms are always cancellable
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Technical details}
-    \begin{itemize}[<+->]
-        \item $\prec$ orders variables and terms degree lexicographic ($ x_{3, 1} \prec x_{2, 5} \prec x_{1, 1} x_{1, 2} )$
-        \item We use $V$ to denote those polynomials that are provable
-        \item $\Delta$ are terms that do not appear as leading terms of polynomials in $V$
-        \item $\Sn \cong \KK \Delta \oplus V$
-        \item $R$ is the projection onto $\Delta$
-        \item Index all of these with $n, d, I$
-        \item Important: $R$ tells us what can not be proved ($R \neq 0 \Leftrightarrow V$ refutable)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Proof structure}
-    \begin{itemize}[<+->]
-        \item Characterize $V_d$ semantically
+        \item Characterize $R_d$ semantically
         \item Problem: only works if $R_I$ agree on their intersections
         \item Characterize $R_I$ syntactically
         \item Show the different operators are identical
