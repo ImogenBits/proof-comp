@@ -32,6 +32,24 @@
 \newcommand{\rhoij}{\rho_{i_1 j_1}}
 \newcommand{\xij}{{x_{i_1 j_1}}}
 
+\definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
+\definecolor{pastelred}{rgb}{1.0, 0.41, 0.38}
+\definecolor{plum}{rgb}{0.56, 0.27, 0.52}
+
+\definecolor{emerald}{rgb}{0.31, 0.78, 0.47}
+\definecolor{caribbeangreen}{rgb}{0.0, 0.8, 0.6}
+\definecolor{darkcyan}{rgb}{0.0, 0.55, 0.55}
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\definecolor{saffron}{rgb}{0.96, 0.77, 0.19}
+\definecolor{chromeyellow}{rgb}{1.0, 0.65, 0.0}
+\definecolor{darkorange}{rgb}{1.0, 0.55, 0.0}
+
+\definecolor{bleudefrance}{rgb}{0.19, 0.55, 0.91}
+
+\colorlet{deltaCol}{amaranth}
+\colorlet{Rcol}{bleudefrance}
+\colorlet{Vcol}{darkorange}
+
 \begin{document}
 \maketitle
 
@@ -87,13 +105,13 @@
 
 \begin{frame}{Algebraic view of proofs}
     \begin{itemize}[<+->]
-        \item $V$ are polynomials we can prove \hfill \textcolor{blue}{$xy + y + z$}
-        \item $\Delta$ are leading terms of ones we cannot prove \hfill \textcolor{red}{$y$}
-        \item $\Sn \cong \KK \Delta \oplus V$ \hfill $xy + y + z = -\textcolor{red}{y} + \textcolor{blue}{xy + y + z}$
-        \item $R$ is the projection onto $\Delta$ \hfill $R(xy + y + z) = \textcolor{red}{y}$
+        \item $\textcolor{Vcol}{V}$ are polynomials we can prove \hfill \textcolor{Vcol}{$xy + y + z$}
+        \item $\textcolor{deltaCol}{\Delta}$ are leading terms of ones we cannot prove \hfill \textcolor{deltaCol}{$y$}
+        \item $\Sn \cong \KK \textcolor{deltaCol}{\Delta} \oplus \textcolor{Vcol}{V}$ \hfill $xy + y + z = -\textcolor{deltaCol}{y} + \textcolor{Vcol}{xy + y + z}$
+        \item $\textcolor{Rcol}{R}$ is the projection onto $\textcolor{deltaCol}{\Delta}$ \hfill $\textcolor{Rcol}{R}(xy + y + z) = \textcolor{deltaCol}{y}$
         \item Similarly:\\
-        $V_d, \Delta_d, R_d$ for polynomials up to degree $d$\\
-        $V_I, \Delta_I, R_I$ for polynomials using variables for pigeons in $I$
+        $\textcolor{Vcol}{V_d}, \textcolor{deltaCol}{\Delta_d}, \textcolor{Rcol}{R_d}$ for polynomials up to degree $d$\\
+        $\textcolor{Vcol}{V_I}, \textcolor{deltaCol}{\Delta_I}, \textcolor{Rcol}{R_I}$ for polynomials using variables for pigeons in $I$
     \end{itemize}
 \end{frame}
 
@@ -119,9 +137,9 @@
         For any $m > n$, every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
     \end{theorem}
     \begin{itemize}[<+->]
-        \item Characterize $R_d$ semantically
-        \item Problem: only works if $R_I$ agree on their intersections
-        \item Characterize $R_I$ syntactically
+        \item Characterize $\textcolor{Rcol}{R_d}$ semantically
+        \item Problem: only works if $\textcolor{Rcol}{R_I}$ agree on their intersections
+        \item Characterize $\textcolor{Rcol}{R_I}$ syntactically
         \item Show the different operators are identical
     \end{itemize}
 \end{frame}
@@ -132,43 +150,44 @@
         \item What polynomials are derivable from \PHP?
         \item Pigeons cannot share holes
         \item Pigeon assignments are variable assignments
-            $$\delta(x) = \begin{cases}
+            $$\textcolor{deltaCol}{\Delta}(x) = \begin{cases}
                 1, \quad \text{if } x \in \{x_{1, 2}, x_{2, 4}, x_{3, 1}\}\\
                 0, \quad \text{otherwise}
             \end{cases}$$
         \item Polynomials are evaluated to $0$ if they allow the assignment
             \begin{align*}
-                \delta(1 - x_{1, 1} - x_{1, 2} - x_{1, 3} - x_{1, 4}) &= 0\\
-                \delta(x_{1, 1} x_{3, 1}) = \delta(x_{1, 2} x_{2, 2}) &= 0
+                \textcolor{deltaCol}{\Delta}(1 - x_{1, 1} - x_{1, 2} - x_{1, 3} - x_{1, 4}) &= 0\\
+                \textcolor{deltaCol}{\Delta}(x_{1, 1} x_{3, 1}) = \textcolor{deltaCol}{\Delta}(x_{1, 2} x_{2, 2}) &= 0
             \end{align*}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Characterizing $R_I$}
+\begin{frame}{Characterizing $\textcolor{Rcol}{R_I}$}
     \begin{itemize}[<.->]
         \item $M_I$ is all assignments corresponding to injections $I \tomono [m]$
-        \item $V_I$ is polynomials that $M_I$ evaluates to $0$
-        \item Define $\Delta_I, R_I$ to be the restrictions of $\Delta, R$ onto $I$
+        \item $\textcolor{Vcol}{V_I}$ is polynomials that $M_I$ evaluates to $0$
+        \item Define $\textcolor{deltaCol}{\Delta_I}, \textcolor{Rcol}{R_I}$ to be the restrictions of
+        $\textcolor{deltaCol}{\Delta}, \textcolor{Rcol}{R}$ onto $I$
         \item Note: this definition completely ignores degrees
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Combining $R_I$}
+\begin{frame}{Combining $\textcolor{Rcol}{R_I}$}
     \begin{itemize}[<+->]
-        \item We want a characterization of $R_d$, not $R_I$
-        \item $V_d \coloneqq \bigcup_{|I| \leq d} V_I$
-        \item $R_d \coloneqq R_{\dom(t)}(t)$
+        \item We want a characterization of $\textcolor{Rcol}{R_d}$, not $\textcolor{Rcol}{R_I}$
+        \item $\textcolor{Vcol}{V_d} \coloneqq \bigcup_{|I| \leq d} \textcolor{Vcol}{V_I}$
+        \item $\textcolor{Rcol}{R_d} \coloneqq \textcolor{Rcol}{R_{\dom(t)}}(t)$
         \item Does this definition actually work?
-        \item Yes it does! But only if $R_I(t) = R_{\dom(t)}(t)$ for all $I \supseteq \dom(t)$
+        \item Yes it does! But only if $\textcolor{Rcol}{R_I}(t) = R_{\dom(t)}(t)$ for all $I \supseteq \dom(t)$
     \end{itemize}
 \end{frame}
 
 \section{The Pigeon Dance}
-\subsection{Characterizing \texorpdfstring{$R_I$}{RI}}
+\subsection{Characterizing \texorpdfstring{$\textcolor{Rcol}{R_I}$}{RI}}
 \begin{frame}{Idea}
     \begin{itemize}[<+->]
-        \item Goal: define $R_I(t)$ so that it is independent of $I \setminus \dom(t)$
-        \item We first define $\Delta_I$ using the pigeon dance
+        \item Goal: define $\textcolor{Rcol}{R_I}(t)$ so that it is independent of $I \setminus \dom(t)$
+        \item We first define $\textcolor{deltaCol}{\Delta_I}$ using the pigeon dance
     \end{itemize}
 \end{frame}
 
@@ -181,33 +200,33 @@
         \item The first pigeon flies to an unoccupied hole to its right
         \item Repeat until all pigeons have moved once
         \item If a pigeon cannot find an empty hole, the dance is aborted
-        \item Define $\Delta_I$ to be the set of terms that let pigeons complete the dance
-        \item $t \in \Delta_I$ independent of $I$ since pigeons not in the dance do not affect it
+        \item Define $\textcolor{deltaCol}{\Delta_I}$ to be the set of terms that let pigeons complete the dance
+        \item $t \in \textcolor{deltaCol}{\Delta_I}$ independent of $I$ since pigeons not in the dance do not affect it
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Defining $R_I$}
+\begin{frame}{Defining $\textcolor{Rcol}{R_I}$}
     \begin{itemize}[<+->]
-        \item We need $R_I(t) = f$ with $\LT(f) \preceq t$ and $t = f \mod V_I$
-        \item If $t \in \Delta_I$, then $f \coloneqq t$
+        \item We need $\textcolor{Rcol}{R_I}(t) = f$ with $\LT(f) \preceq t$ and $t = f \mod \textcolor{Vcol}{V_I}$
+        \item If $t \in \textcolor{deltaCol}{\Delta_I}$, then $f \coloneqq t$
         \item Otherwise, we use $Q_{i_1} = 0$ to derive
             \begin{align*}
                 t &= x_{i_1 j_1} \cdots x_{i_d j_d}\\
-                &= - \sum_{j' < j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d} + x_{i_2 j_2} \cdots x_{i_d j_d} - \sum_{j' > j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d} \mod V_I.
+                &= - \sum_{j' < j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d} + x_{i_2 j_2} \cdots x_{i_d j_d} - \sum_{j' > j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d} \mod \textcolor{Vcol}{V_I}.
             \end{align*}
         \item The first two summands are $\prec t$ and can be ignored
         \item Any terms with $j' \in \{j_2, \ldots, j_d\}$ are $0$ and can be ignored
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Defining $R_I$ (cont.)}
+\begin{frame}{Defining $\textcolor{Rcol}{R_I}$ (cont.)}
     \begin{itemize}[<+->]
         \item Remaining terms have $i > i_1$, $j' > j_1$, and $j' \not\in \{j_2, \ldots, j_d\}$
         \item Repeat the same process with all of them
         \item At each step the next $i$ has $x_{i j}$ replaced with $x_{i j'}$ for some unused $j' > j$
         \item This is the pigeon dance!
-        \item Since $t \not\in \Delta_I$ the dance cannot be completed
-        \item Process terminates with $\LT(f) \prec t$ and $t = f \mod V_I$
+        \item Since $t \not\in \textcolor{deltaCol}{\Delta_I}$ the dance cannot be completed
+        \item Process terminates with $\LT(f) \prec t$ and $t = f \mod \textcolor{Vcol}{V_I}$
     \end{itemize}
 \end{frame}
 
@@ -226,8 +245,8 @@
 
 \begin{frame}{The dance in terms of $\K$}
     \begin{theorem}<.->
-        $x_{i_1 j_1} \cdots x_{i_d j_d} \in \Delta_I$ if and only if there is a $j' > j_1$ such that
-        $\K(x_{i_1 j'} \cdots x_{i_d j_d}) \in \Delta_I$.
+        $x_{i_1 j_1} \cdots x_{i_d j_d} \in \textcolor{deltaCol}{\Delta_I}$ if and only if there is a $j' > j_1$ such that
+        $\K(x_{i_1 j'} \cdots x_{i_d j_d}) \in \textcolor{deltaCol}{\Delta_I}$.
     \end{theorem}
     \begin{proof}[Proof\nopunct]<+->
         This operator effectively moves the first pigeon to an empty hole to its right and then kills it.
@@ -235,20 +254,20 @@
     \end{proof}
 \end{frame}
 
-\begin{frame}{Closure of $\Delta_I$}
+\begin{frame}{Closure of $\textcolor{deltaCol}{\Delta_I}$}
      \begin{theorem}<+->
-        $\Delta_I$ is closed under $\K$.
+        $\textcolor{deltaCol}{\Delta_I}$ is closed under $\K$.
      \end{theorem}
     \begin{proof}[Proof\nopunct]<+->
-        If $t \in \Delta_I$ then the pigeons can complete their dance. During this the first pigeon will start at
+        If $t \in \textcolor{deltaCol}{\Delta_I}$ then the pigeons can complete their dance. During this the first pigeon will start at
         $j$ and fly to $j'$. Killing the pigeon frees up $j'$ so any other pigeon that wanted to use $j$ can use it instead.
     \end{proof}
 \end{frame}
 
 \begin{frame}{The lower bound}
     \begin{theorem}<+->
-        If $|I| \leq (n+1) / 2, t \in D_I$ and the minimal element $i$ of $I$ is not in $\dom(t)$, then there exists a $j \in [n]$
-        such that $\K(x_{ij} t) \in \Delta_I$.
+        If $|I| \leq (n+1) / 2, t \in \textcolor{deltaCol}{\Delta_I}$ and the minimal element $i$ of $I$ is not in $\dom(t)$, then there exists a $j \in [n]$
+        such that $\K(x_{ij} t) \in \textcolor{deltaCol}{\Delta_I}$.
     \end{theorem}
     \begin{proof}[Proof\nopunct{}]<+->
         At most $$
@@ -264,20 +283,20 @@
 \begin{frame}{Putting things together}
     \begin{itemize}[<+->]
         \item Show that the two operators are identical
-        \item Induction over $|I|$ providing an $a \in M_I$ with $a(f) \neq 0$ for any $f \in \KK \Delta_I$
+        \item Induction over $|I|$ providing an $a \in M_I$ with $a(f) \neq 0$ for any $f \in \KK \textcolor{deltaCol}{\Delta_I}$
         \item Remove variables $x_{ij}$ for minimal $i \in I$ from $f$
         \item Inductive assumption gives us $a' \in M_{I\setminus \{i\}}$ with $a'(f') \neq 0$
-        \item Pick a $j$ such that $\K(x_{i j} t) \in \Delta_I$
+        \item Pick a $j$ such that $\K(x_{i j} t) \in \textcolor{deltaCol}{\Delta_I}$
         \item Extend assignment to $I$ with $a(f) \neq 0$
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Summary}
     \begin{itemize}[<+->]
-        \item If $d \leq n/2 + 1$, then definition of $R_I$ via the pigeon dance and via $M_I$ are identical
-        \item Pigeons not in the dance do not affect its success, so $R_I(t) = R_{\dom(t)}(t)$
-        \item $V_d$ is precisely polynomials identically zero on $M_I$
-        \item $R_d \neq 0$
+        \item If $d \leq n/2 + 1$, then definition of $\textcolor{Rcol}{R_I}$ via the pigeon dance and via $M_I$ are identical
+        \item Pigeons not in the dance do not affect its success, so $\textcolor{Rcol}{R_I}(t) = R_{\dom(t)}(t)$
+        \item $\textcolor{Vcol}{V_d}$ is precisely polynomials identically zero on $M_I$
+        \item $\textcolor{Rcol}{R_d} \neq 0$
         \item There is no refutation of \PHP with $d \leq n/2 +1$
     \end{itemize}
 \end{frame}
