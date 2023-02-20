@@ -99,7 +99,7 @@
     \begin{itemize}[<+->]
         \item We now want to subtract $y$
         \item There is no way to prove $y$ from $x+1$ and $z$
-        \item We cannot prove $xy + z$
+        \item Closest to $xy + z$ we can prove is $xy + y + z$
     \end{itemize}
 \end{frame}
 
@@ -164,7 +164,7 @@
 
 \begin{frame}{Characterizing $\textcolor{Rcol}{R_I}$}
     \begin{itemize}[<.->]
-        \item $M_I$ is all assignments corresponding to injections $I \tomono [m]$
+        \item $M_I$ is the set of all assignments corresponding to injections $I \tomono [m]$
         \item $\textcolor{Vcol}{V_I}$ is polynomials that $M_I$ evaluates to $0$
         \item Define $\textcolor{deltaCol}{\Delta_I}, \textcolor{Rcol}{R_I}$ to be the restrictions of
         $\textcolor{deltaCol}{\Delta}, \textcolor{Rcol}{R}$ onto $I$
@@ -178,12 +178,12 @@
         \item $\textcolor{Vcol}{V_d} \coloneqq \bigcup_{|I| \leq d} \textcolor{Vcol}{V_I}$
         \item $\textcolor{Rcol}{R_d} \coloneqq \textcolor{Rcol}{R_{\dom(t)}}(t)$
         \item Does this definition actually work?
-        \item Yes it does! But only if $\textcolor{Rcol}{R_I}(t) = R_{\dom(t)}(t)$ for all $I \supseteq \dom(t)$
+        \item Yes it does! But only if $\textcolor{Rcol}{R_I}(t) = \textcolor{Rcol}{R_{\dom(t)}}(t)$ for all $I \supseteq \dom(t)$
     \end{itemize}
 \end{frame}
 
 \section{The Pigeon Dance}
-\subsection{Characterizing \texorpdfstring{$\textcolor{Rcol}{R_I}$}{RI}}
+\subsection{Characterizing \texorpdfstring{$R_I$}{RI}}
 \begin{frame}{Idea}
     \begin{itemize}[<+->]
         \item Goal: define $\textcolor{Rcol}{R_I}(t)$ so that it is independent of $I \setminus \dom(t)$
