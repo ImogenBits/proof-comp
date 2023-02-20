@@ -159,15 +159,14 @@
 \end{frame}
 
 \section{The Pigeon Dance}
-\begin{frame}{Overview}
+\subsection{Characterizing \texorpdfstring{$R_I$}{RI}}
+\begin{frame}{Idea}
     \begin{itemize}[<+->]
-        \item Define $R_I(t)$ so that it is independent of pigeons not in $t$
-        \item Show that the two definitions are identical
-        \item We will only show the broad steps
+        \item Goal: define $R_I(t)$ so that it is independent of $I \setminus \dom(t)$
+        \item We first define $\Delta_I$ using the pigeon dance
     \end{itemize}
 \end{frame}
 
-\subsection{Characterizing \texorpdfstring{$R_I$}{RI}}
 \begin{frame}{Example}
     
 \end{frame}
@@ -178,18 +177,18 @@
         \item Repeat until all pigeons have moved once
         \item If a pigeon can not find an empty hole, the dance is aborted
         \item Define $\Delta_I$ to be the set of terms that let pigeons complete the dance
-        \item $R_I(t) = R_{\dom(t)}(t)$ since pigeons not in the dance do not affect it
+        \item $t \in \Delta_I$ independent of $I$ since pigeons not in the dance do not affect it
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Defining $R_I$}
     \begin{itemize}[<+->]
-        \item We need $R_I(t) = f$ with $\LT(f) \prec t$ and $t - f \in V_I$
-        \item If $t \in \Delta_I$ then $f = t$
-        \item Otherwise we use $Q_{i_1} = 0$ to derive
+        \item We need $R_I(t) = f$ with $\LT(f) \preceq t$ and $t = f \mod V_I$
+        \item If $t \in \Delta_I$, then $f \coloneqq t$
+        \item Otherwise, we use $Q_{i_1} = 0$ to derive
             \begin{align*}
-                t = \ &x_{i_2 j_2} \cdots x_{i_d j_d} - \sum_{j' < j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d}\\
-                &- \sum_{j' > j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d} \mod V_I.
+                t &= x_{i_1 j_1} \cdots x_{i_d j_d}\\
+                &= - \sum_{j' < j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d} + x_{i_2 j_2} \cdots x_{i_d j_d} - \sum_{j' > j_1} x_{i_1 j'} x_{i_2 j_2} \cdots x_{i_d j_d} \mod V_I.
             \end{align*}
         \item The first two summands are $\prec t$ and can be ignored
         \item Any terms with $j' \in \{j_2, \ldots, j_d\}$ are $0$ and can be ignored
@@ -198,11 +197,12 @@
 
 \begin{frame}{Defining $R_I$ (cont.)}
     \begin{itemize}[<+->]
-        \item Repeat the same process with all remaining terms
-        \item At each step the first $x_{i, j}$ gets replaced with $x_{i, j'}$ with some unused $j' > j$
+        \item Remaining terms have $i > i_1$, $j' > j_1$, and $j' \not\in \{j_2, \ldots, j_d\}$
+        \item Repeat the same process with all of them
+        \item At each step the next $i$ has $x_{i, j}$ replaced with $x_{i, j'}$ for some unused $j' > j$
         \item This is the pigeon dance!
         \item Since $t \not\in \Delta_I$ the dance can not be completed
-        \item Process terminates with $f \prec t$ and $t = f \mod V_I$
+        \item Process terminates with $\LT(f) \prec t$ and $t = f \mod V_I$
     \end{itemize}
 \end{frame}
 
