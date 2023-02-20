@@ -1,7 +1,7 @@
-\documentclass[xcolor={dvipsnames}, aspectratio=169]{beamer}
+\documentclass[xcolor={dvipsnames}, aspectratio=169, handout]{beamer}
 \usetheme{Darmstadt}
 \usecolortheme{dolphin}
-\usepackage[logic, complexity]{commondefns}
+\usepackage[logic, complexity, graphs]{commondefns}
 \usefonttheme[onlymath]{serif}
 \usepackage{csquotes}
 \usepackage[style=alphabetic]{biblatex}
@@ -51,7 +51,7 @@
 \colorlet{Rcol}{bleudefrance}
 \colorlet{Vcol}{darkorange}
 
-\includeonlyframes{current}
+%\includeonlyframes{current}
 
 \begin{document}
 \maketitle
@@ -59,11 +59,7 @@
 \section{Introduction}
 
 \begin{frame}{Overview}
-    \begin{itemize}
-        \item We will present \cite{raz}
-        \item Required background
-        \item Overview of the proof
-    \end{itemize}
+    \tableofcontents[hideallsubsections]
 \end{frame}
 
 \subsection{The polynomial calculus}
@@ -202,8 +198,22 @@
     \end{itemize}
 \end{frame}
 
+\newcommand{\pigeon}[3]{
+    \node#3 (pigeon#1) at (#2, 1) [label=above right:#1] {\includegraphics[width=1.5cm]{pigeon.jpg}};
+}
+
 \begin{frame}[label=current]{Example}
-    
+    \centering
+
+    \begin{tikzpicture}
+        \draw[draw=black] (0, 0) rectangle ++(2, 2);
+        \draw[draw=black] (2.5, 0) rectangle ++(2, 2);
+        \draw[draw=black] (5, 0) rectangle ++(2, 2);
+        \draw[draw=black] (7.5, 0) rectangle ++(2, 2);
+        \draw[draw=black] (10, 0) rectangle ++(2, 2);
+
+        \pigeon{1}{6}{<+->}
+    \end{tikzpicture}
 \end{frame}
 
 \begin{frame}{Formalization}
