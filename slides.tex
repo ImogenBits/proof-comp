@@ -10,6 +10,11 @@
 \title{Lower Bounds for the Polynomial Calculus\\via the ``Pigeon Dance''}
 \author{Imogen Hergeth}
 \date{January 2023}
+\addtobeamertemplate{navigation symbols}{}{
+    \hspace{1em}
+    \usebeamerfont{footline}%
+    \insertframenumber / \inserttotalframenumber
+}
 
 
 \newcommand{\Sn}{S_n(\KK)}
@@ -76,14 +81,14 @@
     \begin{itemize}[<+->]
         \item We now want to subtract $y$
         \item There is no way to prove $y$ from $x+1$ and $z$
-        \item We can not prove $xy + z$
+        \item We cannot prove $xy + z$
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Algebraic view of proofs}
     \begin{itemize}[<+->]
         \item $V$ are polynomials we can prove \hfill \textcolor{blue}{$xy + y + z$}
-        \item $\Delta$ are leading terms of ones we can not prove \hfill \textcolor{red}{$y$}
+        \item $\Delta$ are leading terms of ones we cannot prove \hfill \textcolor{red}{$y$}
         \item $\Sn \cong \KK \Delta \oplus V$ \hfill $xy + y + z = -\textcolor{red}{y} + \textcolor{blue}{xy + y + z}$
         \item $R$ is the projection onto $\Delta$ \hfill $R(xy + y + z) = \textcolor{red}{y}$
         \item Similarly:\\
@@ -125,7 +130,7 @@
 \begin{frame}{Semantics of \PHP}
     \begin{itemize}[<+->]
         \item What polynomials are derivable from \PHP?
-        \item Pigeons can not share holes
+        \item Pigeons cannot share holes
         \item Pigeon assignments are variable assignments
             $$\delta(x) = \begin{cases}
                 1, \quad \text{if } x \in \{x_{1, 2}, x_{2, 4}, x_{3, 1}\}\\
@@ -175,7 +180,7 @@
     \begin{itemize}[<+->]
         \item The first pigeon flies to an unoccupied hole to its right
         \item Repeat until all pigeons have moved once
-        \item If a pigeon can not find an empty hole, the dance is aborted
+        \item If a pigeon cannot find an empty hole, the dance is aborted
         \item Define $\Delta_I$ to be the set of terms that let pigeons complete the dance
         \item $t \in \Delta_I$ independent of $I$ since pigeons not in the dance do not affect it
     \end{itemize}
@@ -201,7 +206,7 @@
         \item Repeat the same process with all of them
         \item At each step the next $i$ has $x_{i j}$ replaced with $x_{i j'}$ for some unused $j' > j$
         \item This is the pigeon dance!
-        \item Since $t \not\in \Delta_I$ the dance can not be completed
+        \item Since $t \not\in \Delta_I$ the dance cannot be completed
         \item Process terminates with $\LT(f) \prec t$ and $t = f \mod V_I$
     \end{itemize}
 \end{frame}
