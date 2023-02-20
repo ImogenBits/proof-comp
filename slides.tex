@@ -88,13 +88,13 @@
 
 \begin{frame}{Algebraic view of proofs}
     \begin{itemize}[<+->]
-        \item $V$ are polynomials we can prove
-        \item $\Delta$ are leading terms of ones we can not prove
-        \item $\Sn \cong \KK \Delta \oplus V$
-        \item $R$ is the projection onto $\Delta$
+        \item $V$ are polynomials we can prove \hfill \textcolor{blue}{$xy + y + z$}
+        \item $\Delta$ are leading terms of ones we can not prove \hfill \textcolor{red}{$y$}
+        \item $\Sn \cong \KK \Delta \oplus V$ \hfill $xy + y + z = -\textcolor{red}{y} + \textcolor{blue}{xy + y + z}$
+        \item $R$ is the projection onto $\Delta$ \hfill $R(xy + y + z) = \textcolor{red}{y}$
         \item Similarly:\\
-            $V_d, \Delta_d, R_d$ for polynomials up to degree $d$\\
-            $V_I, \Delta_I, R_I$ for polynomials using variables from $I$
+        $V_d, \Delta_d, R_d$ for polynomials up to degree $d$\\
+        $V_I, \Delta_I, R_I$ for polynomials using variables from $I$
     \end{itemize}
 \end{frame}
 
@@ -145,7 +145,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Derivable Polynomials}
+\begin{frame}{Characterizing $V_I$}
     \begin{itemize}[<+->]
         \item $I \subseteq [n]$ is a set of pigeons
         \item $M_I$ is all assignments corresponding to injections $I \tomono [m]$
