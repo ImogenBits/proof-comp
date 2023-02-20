@@ -199,7 +199,7 @@
     \begin{itemize}[<+->]
         \item Remaining terms have $i > i_1$, $j' > j_1$, and $j' \not\in \{j_2, \ldots, j_d\}$
         \item Repeat the same process with all of them
-        \item At each step the next $i$ has $x_{i, j}$ replaced with $x_{i, j'}$ for some unused $j' > j$
+        \item At each step the next $i$ has $x_{i j}$ replaced with $x_{i j'}$ for some unused $j' > j$
         \item This is the pigeon dance!
         \item Since $t \not\in \Delta_I$ the dance can not be completed
         \item Process terminates with $\LT(f) \prec t$ and $t = f \mod V_I$
@@ -210,7 +210,7 @@
 \begin{frame}{The $\K$ operator}
     \begin{itemize}[<+->]
         \item The $\K$ operator kills the first pigeon and moves its hole to the left
-        \item $\K(x_{i_1, j_1} \cdots x_{i_d, j_d}) = x_{i_2, j'_2} \cdots x_{i_d, j'_d}$ with\\
+        \item $\K(x_{i_1 j_1} \cdots x_{i_d, j_d}) = x_{i_2 j'_2} \cdots x_{i_d j'_d}$ with\\
             $$j'_k \coloneqq \begin{cases}
                     j_k + 1, &\text{if } j_k < j_1\\
                     j_k, &\text{if } j_k > j_1.
