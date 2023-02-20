@@ -1,4 +1,4 @@
-\documentclass[xcolor={dvipsnames}, aspectratio=169, handout]{beamer}
+\documentclass[xcolor={dvipsnames}, aspectratio=169]{beamer}
 \usetheme{Darmstadt}
 \usecolortheme{dolphin}
 \usepackage[logic, complexity, graphs]{commondefns}
@@ -126,7 +126,7 @@
 \end{frame}
 
 \begin{frame}{Algebraic view of proofs}
-    \begin{itemize}[<+->]
+    \begin{itemize}[<.->]
         \item $\textcolor{Vcol}{V}$ are polynomials we can prove \hfill \textcolor{Vcol}{$xy + y + z$}
         \item $\textcolor{deltaCol}{\Delta}$ are leading terms of ones we cannot prove \hfill \textcolor{deltaCol}{$y$}
         \item $\Sn \cong \KK \textcolor{deltaCol}{\Delta} \oplus \textcolor{Vcol}{V}$ \hfill $xy + z = -\textcolor{deltaCol}{y} + \textcolor{Vcol}{xy + y + z}$
@@ -156,7 +156,7 @@
 
 \begin{frame}{Main result}
     \begin{theorem}<+->
-        For any $m > n$, every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
+        Every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
     \end{theorem}
     \begin{itemize}[<+->]
         \item Derived polynomials are constraints on pigeon assignments
@@ -167,7 +167,7 @@
 
 \subsection{Valid Pigeon Arrangements}
 \begin{frame}{Semantics of \PHP}
-    \begin{itemize}[<.->]
+    \begin{itemize}[<+->]
         \item Pigeons cannot share holes
         \item Possible for pigeons $I \subseteq [m]$ with $|I| \leq n$
         \item Locally valid assignments are injections $I \tomono [n]$
