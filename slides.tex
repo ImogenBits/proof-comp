@@ -48,8 +48,8 @@
 \definecolor{bleudefrance}{rgb}{0.19, 0.55, 0.91}
 
 \colorlet{deltaCol}{amaranth}
-\colorlet{Rcol}{bleudefrance}
-\colorlet{Vcol}{darkorange}
+%\colorlet{Rcol}{bleudefrance}
+\colorlet{Vcol}{bleudefrance}
 
 \begin{document}
 \maketitle
@@ -130,10 +130,7 @@
         \item $\textcolor{Vcol}{V}$ are polynomials we can prove \hfill \textcolor{Vcol}{$xy + y + z$}
         \item $\textcolor{deltaCol}{\Delta}$ are leading terms of ones we cannot prove \hfill \textcolor{deltaCol}{$y$}
         \item $\Sn \cong \KK \textcolor{deltaCol}{\Delta} \oplus \textcolor{Vcol}{V}$ \hfill $xy + z = -\textcolor{deltaCol}{y} + \textcolor{Vcol}{xy + y + z}$
-        \item $\textcolor{Rcol}{R}$ is the projection onto $\textcolor{deltaCol}{\Delta}$ \hfill $\textcolor{Rcol}{R}(xy + z) = \textcolor{deltaCol}{y}$
-        \item Similarly:\\
-        $\textcolor{Vcol}{V_d}, \textcolor{deltaCol}{\Delta_d}, \textcolor{Rcol}{R_d}$ for polynomials up to degree $d$\\
-        $\textcolor{Vcol}{V_I}, \textcolor{deltaCol}{\Delta_I}, \textcolor{Rcol}{R_I}$ for polynomials using variables for subset of pigeons $I$
+        \item Similarly $\textcolor{Vcol}{V_I}, \textcolor{deltaCol}{\Delta_I}$ using subset of variables $I$
     \end{itemize}
 \end{frame}
 
@@ -159,29 +156,29 @@
         Every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
     \end{theorem}
     \begin{itemize}[<+->]
-        \item Derived polynomials are constraints on pigeon assignments
-        \item Locally valid assignments are possible
-        \item Polynomials need to have large degree to prove inconsitencies
+        \item \PHP are constraints on pigeon assignments
+        \item Proofs combine them into more complex ones
+        \item Can only derive local constraints with small degrees
+        \item Pigeons can fly away to escape local contradictions
     \end{itemize}
 \end{frame}
 
-\subsection{Valid Pigeon Arrangements}
-\begin{frame}{Semantics of \PHP}
+\begin{frame}{\PHP constraints}
     \begin{itemize}[<+->]
         \item Pigeons cannot share holes
         \item Possible for pigeons $I \subseteq [m]$ with $|I| \leq n$
         \item Locally valid assignments are injections $I \tomono [n]$
         \item Corresponding varliable assignments are $M_I$
-        \item $V_I$ is the set of all polynomials with $a(f) = 0$ for all $a \in M_I$
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Done?}
+\begin{frame}{Locally valid assignments}
     \begin{itemize}[<+->]
+        \item $\textcolor{Vcol}{V_I}$ is the set of all polynomials with $a(f) = 0$ for all $a \in M_I$
         \item Not all polynomials are identically zero on $M_I$
-        \item This definition completely ignores the degrees of the proofs!
-        \item It only works if $\textcolor{Rcol}{R_I}(t)$ is independent of $I$
-        \item Looks like this does not work at all
+        \item But, this definition completely ignores the degrees of the proofs!
+        \item It still works, but only if $t \in \textcolor{deltaCol}{\Delta_I}$ is independent of $I$
+        \item Use pigeon dance to see this
     \end{itemize}
 \end{frame}
 
@@ -226,7 +223,7 @@
         \item The first pigeon flies to an unoccupied hole to its right
         \item Repeat until all pigeons have moved once
         \item If a pigeon cannot find an empty hole, the dance is aborted
-        \item Encode pigeon positions as terms \qquad (\textcolor{deltaCol}{$x_{1, 4} x_{2, 1} x_{3, 2}$})
+        \item Encode pigeon positions as terms \qquad (\textcolor{deltaCol}{$x_{1, 4} \, x_{2, 1} \, x_{3, 2}$})
         \item $\textcolor{deltaCol}{\Delta_I}$ is the set of terms that let pigeons complete the dance
         \item $t \in \textcolor{deltaCol}{\Delta_I}$ independent of $I$ since pigeons not in the dance do not affect it
     \end{itemize}
@@ -235,8 +232,9 @@
 \subsection{Properties}
 \begin{frame}{The $\K$ operator}
     \begin{itemize}[<+->]
-        \item Idea: operator that lets us block specific holes
-        \item The $\K$ operator kills the first pigeon and moves its hole to the left
+        \item We need to further understand the dance to prove it correct
+        \item Idea: a way to block specific pigeon holes
+        \item Kill the first pigeon and moves its hole to the left
         \item $\K(x_{i_1 j_1} \cdots x_{i_d, j_d}) = x_{i_2 j'_2} \cdots x_{i_d j'_d}$ with\\
             $$j'_k \coloneqq \begin{cases}
                     j_k + 1, &\text{if } j_k < j_1\\
@@ -245,13 +243,14 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{The dance in terms of $\K$}
-    \begin{theorem}<.->
+\begin{frame}{Simulating the pigeon dance with $\K$}
+    \stepcounter{beamerpauses}
+    \begin{theorem}<+->
         $x_{i_1 j_1} \cdots x_{i_d j_d} \in \textcolor{deltaCol}{\Delta_I}$ if and only if there is a $j' > j_1$ such that
         $\K(x_{i_1 j'} \cdots x_{i_d j_d}) \in \textcolor{deltaCol}{\Delta_I}$.
     \end{theorem}
     \begin{proof}[Proof sketch\nopunct]<+->
-        This operator effectively moves the first pigeon to an empty hole to its right and then kills it.
+        $\K(x_{i_1 j'} \cdots x_{i_d j_d})$ effectively moves the first pigeon to an empty hole to its right and then kills it.
         This is the same as each step in the dance, where the first pigeon flies to some free hole to its right and then occupies it.
     \end{proof}
 \end{frame}
@@ -268,15 +267,14 @@
 
 \begin{frame}{The lower bound}
     \begin{theorem}<+->
-        If $|I| \leq (n+1) / 2, t \in \textcolor{deltaCol}{\Delta_I}$ and the minimal element $i$ of $I$ is not in $\dom(t)$, then there exists a $j \in [n]$
+        If $|I| \leq (n+1) / 2$ and pigeons can complete the dance, then we can introduce a new pigeon
         such that $\K(x_{ij} t) \in \textcolor{deltaCol}{\Delta_I}$.
     \end{theorem}
     \begin{proof}[Proof sketch\nopunct{}]<+->
         At most $$
             |\dom(t)| \leq |I \setminus \{i\}| \leq \frac{n - 1}{2}
-        $$ pigeons involved in the dance, each occupying two holes. Thus the total number of holes is $n - 1$ and one hole
-        $j$ remains free. For the purposes of the dance, $\K(x_{ij} t)$ is the same as $t$ since the only difference is
-        $j$ being moved to the left.
+        $$ pigeons involved in the dance, each occupying two holes. Place pigeon at unused hole and kill it there.
+        The remaining pigeons can complete the dance since the moved hole was not used.
     \end{proof}
 \end{frame}
 
@@ -284,7 +282,7 @@
 
 \begin{frame}{Putting things together}
     \begin{itemize}[<+->]
-        \item Prove polynomials $f \in \KK \textcolor{deltaCol}{\Delta_I}$ are not derivable
+        \item Goal: prove polynomials $f \in \KK \textcolor{deltaCol}{\Delta_I}$ are not derivable
         \item Each $f$ has a locally consistent assignment $a \in M_I$ with $a(f) \neq 0$
         \item Induction over $|I|$
         \item Remove variables $x_{ij}$ for minimal $i \in I$ from $f$
@@ -295,13 +293,10 @@
 \end{frame}
 
 \begin{frame}{Summary}
-    \begin{theorem}<+->
-        For any $m > n$, every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
-    \end{theorem}
     \begin{itemize}[<+->]
+        \item Proven a lower bound for polynomial calculus proofs
         \item If the degree is small, pigeons can complete the dance
-        \item You need to have $n/2 + 1$ pigeons to block enough holes
-        \item Only polynomials corresponding to locally consistent assignments are derivable
+        \item You need to have $n/2 + 1$ pigeons to force a contradiction
     \end{itemize}
 \end{frame}
 
