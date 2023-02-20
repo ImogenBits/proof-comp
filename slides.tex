@@ -258,11 +258,12 @@
 
 \begin{frame}{Putting things together}
     \begin{itemize}[<+->]
-        \item We now show that the two operators are identical
-        \item Equivalent to $\Delta_I$ being linearly independent as functions $M_I \to \KK$
-        \item Induction on $|I|$ gives us assignment $a \in M_{I\setminus \{i\}}$ with $a(f') \neq 0$
-        \item Pick a $j$ such that $\K(x_{i, j} t) \in \Delta_I$
-        \item Extend assignment to $I$ with $a'(f) \neq 0$
+        \item Show that the two operators are identical
+        \item Induction over $|I|$ providing an $a \in M_I$ with $a(f) \neq 0$ for any $f \in \KK \Delta_I$
+        \item Remove variables $x_{ij}$ for minimal $i \in I$ from $f$
+        \item Inductive assumption gives us $a' \in M_{I\setminus \{i\}}$ with $a'(f') \neq 0$
+        \item Pick a $j$ such that $\K(x_{i j} t) \in \Delta_I$
+        \item Extend assignment to $I$ with $a(f) \neq 0$
     \end{itemize}
 \end{frame}
 
