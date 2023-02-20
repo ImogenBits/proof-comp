@@ -1,4 +1,4 @@
-\documentclass[xcolor={dvipsnames}, aspectratio=169, handout]{beamer}
+\documentclass[xcolor={dvipsnames}, aspectratio=169]{beamer}
 \usetheme{Darmstadt}
 \usecolortheme{dolphin}
 \usepackage[logic, complexity, graphs]{commondefns}
@@ -51,7 +51,7 @@
 \colorlet{Rcol}{bleudefrance}
 \colorlet{Vcol}{darkorange}
 
-%\includeonlyframes{current}
+\includeonlyframes{current}
 
 \begin{document}
 \maketitle
@@ -202,7 +202,13 @@
 \end{frame}
 
 \newcommand{\pigeon}[3]{
-    \node#3 (pigeon#1) at (#2, 1) [label=above right:#1] {\includegraphics[width=1.5cm]{pigeon.jpg}};
+    \node#3 (pigeon#1) at (#2, 1) [label={[label distance=-.8cm]-145:#1}]
+        {\includegraphics[width=1.5cm]{pigeon.jpg}};
+}
+
+\newcommand{\flight}[3]{
+    \node#3 (flight#1) at (#2, 3.2) [label={[label distance=-.8cm]-145:#1}]
+        {\includegraphics[width=1.5cm]{flight.jpg}};
 }
 
 \begin{frame}[label=current]{Example}
@@ -215,7 +221,15 @@
         \draw[draw=black] (7.5, 0) rectangle ++(2, 2);
         \draw[draw=black] (10, 0) rectangle ++(2, 2);
 
-        \pigeon{1}{6}{<+->}
+        \pigeon{1}{8.5}{<+>}
+        \pigeon{2}{1}{<.-3>}
+        \pigeon{3}{3.5}{<.-5>}
+        \flight{1}{9.75}{<+>}
+        \pigeon{1}{11}{<+->}
+        \flight{2}{4.75}{<+>}
+        \pigeon{2}{8.5}{<+->}
+        \flight{3}{4.75}{<+>}
+        \pigeon{3}{6}{<+->}
     \end{tikzpicture}
 \end{frame}
 
