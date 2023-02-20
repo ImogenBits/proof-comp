@@ -3,8 +3,8 @@
 \usecolortheme{dolphin}
 \usepackage[logic, complexity]{commondefns}
 \usefonttheme[onlymath]{serif}
-%\usepackage[style=alphabetic]{biblatex}
-%\addbibresource{refs.bib}
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{refs.bib}
 \usepackage{bussproofs}
 
 \title{Lower Bounds for the Polynomial Calculus\\via the ``Pigeon Dance''}
@@ -54,6 +54,14 @@
 \maketitle
 
 \section{Introduction}
+
+\begin{frame}{Overview}
+    \begin{itemize}
+        \item We will present \cite{raz}
+        \item Required background
+        \item Overview of the proof
+    \end{itemize}
+\end{frame}
 
 \subsection{The polynomial calculus}
 \begin{frame}{Definition}
@@ -248,7 +256,7 @@
         $x_{i_1 j_1} \cdots x_{i_d j_d} \in \textcolor{deltaCol}{\Delta_I}$ if and only if there is a $j' > j_1$ such that
         $\K(x_{i_1 j'} \cdots x_{i_d j_d}) \in \textcolor{deltaCol}{\Delta_I}$.
     \end{theorem}
-    \begin{proof}[Proof\nopunct]<+->
+    \begin{proof}[Proof sketch\nopunct]<+->
         This operator effectively moves the first pigeon to an empty hole to its right and then kills it.
         This is the same as each step in the dance, where the first pigeon flies to some free hole to its right and then occupies it.
     \end{proof}
@@ -258,7 +266,7 @@
      \begin{theorem}<+->
         $\textcolor{deltaCol}{\Delta_I}$ is closed under $\K$.
      \end{theorem}
-    \begin{proof}[Proof\nopunct]<+->
+    \begin{proof}[Proof sketch\nopunct]<+->
         If $t \in \textcolor{deltaCol}{\Delta_I}$ then the pigeons can complete their dance. During this the first pigeon will start at
         $j$ and fly to $j'$. Killing the pigeon frees up $j'$ so any other pigeon that wanted to use $j$ can use it instead.
     \end{proof}
@@ -269,7 +277,7 @@
         If $|I| \leq (n+1) / 2, t \in \textcolor{deltaCol}{\Delta_I}$ and the minimal element $i$ of $I$ is not in $\dom(t)$, then there exists a $j \in [n]$
         such that $\K(x_{ij} t) \in \textcolor{deltaCol}{\Delta_I}$.
     \end{theorem}
-    \begin{proof}[Proof\nopunct{}]<+->
+    \begin{proof}[Proof sketch\nopunct{}]<+->
         At most $$
             |\dom(t)| \leq |I \setminus \{i\}| \leq \frac{n - 1}{2}
         $$ pigeons involved in the dance, each occupying two holes. Thus the total number of holes is $n - 1$ and one hole
