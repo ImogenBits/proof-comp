@@ -88,7 +88,7 @@
         \item $R$ is the projection onto $\Delta$ \hfill $R(xy + y + z) = \textcolor{red}{y}$
         \item Similarly:\\
         $V_d, \Delta_d, R_d$ for polynomials up to degree $d$\\
-        $V_I, \Delta_I, R_I$ for polynomials using variables from $I$
+        $V_I, \Delta_I, R_I$ for polynomials using variables for pigeons in $I$
     \end{itemize}
 \end{frame}
 
@@ -122,7 +122,7 @@
 \end{frame}
 
 \subsection{Valid Pigeon Arrangements}
-\begin{frame}{Idea}
+\begin{frame}{Semantics of \PHP}
     \begin{itemize}[<+->]
         \item What polynomials are derivable from \PHP?
         \item Pigeons can not share holes
@@ -139,22 +139,22 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Characterizing $V_I$}
-    \begin{itemize}[<+->]
-        \item $I \subseteq [n]$ is a set of pigeons
+\begin{frame}{Characterizing $R_I$}
+    \begin{itemize}[<.->]
         \item $M_I$ is all assignments corresponding to injections $I \tomono [m]$
-        \item Polynomials in \PHP are identically zero on $M_I$
-        \item Polynomials derivable from \PHP are identically zero on $M_I$
-        \item[] $\Rightarrow$ $V_I$ are all polynomials identically zero on $M_I$
+        \item $V_I$ is polynomials that $M_I$ evaluates to $0$
+        \item Define $\Delta_I, R_I$ to be the restrictions of $\Delta, R$ onto $I$
+        \item Note: this definition completely ignores degrees
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Combining $V_I$}
+\begin{frame}{Combining $R_I$}
     \begin{itemize}[<+->]
-        \item We want a characterization of $V_d$, not $V_I$
-        \item Set $V_d \coloneqq \bigcup_{|I| \leq d} V_I$ and $R_d$ accordingly
+        \item We want a characterization of $R_d$, not $R_I$
+        \item $V_d \coloneqq \bigcup_{|I| \leq d} V_I$
+        \item $R_d \coloneqq R_{\dom(t)}(t)$
         \item Does this definition actually work?
-        \item Yes it does! But only if $R_I(t) = R_{\dom(t)}(t)$
+        \item Yes it does! But only if $R_I(t) = R_{\dom(t)}(t)$ for all $I \supseteq \dom(t)$
     \end{itemize}
 \end{frame}
 
