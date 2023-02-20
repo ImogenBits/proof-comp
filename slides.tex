@@ -186,7 +186,7 @@
 \end{frame}
 
 \section{The Pigeon Dance}
-\subsection{Characterizing \texorpdfstring{$R_I$}{RI}}
+\subsection{Ideas}
 
 \newcommand{\pigeon}[3]{
     \node#3 (pigeon#1) at (#2, 1) [label={[label distance=-.8cm]-145:#1}]
@@ -232,7 +232,7 @@
     \end{itemize}
 \end{frame}
 
-\subsection{Properties of the dance}
+\subsection{Properties}
 \begin{frame}{The $\K$ operator}
     \begin{itemize}[<+->]
         \item Idea: operator that lets us block specific holes
@@ -284,8 +284,9 @@
 
 \begin{frame}{Putting things together}
     \begin{itemize}[<+->]
-        \item Show that the two operators are identical
-        \item Induction over $|I|$ providing an $a \in M_I$ with $a(f) \neq 0$ for any $f \in \KK \textcolor{deltaCol}{\Delta_I}$
+        \item Prove polynomials $f \in \KK \textcolor{deltaCol}{\Delta_I}$ are not derivable
+        \item Each $f$ has a locally consistent assignment $a \in M_I$ with $a(f) \neq 0$
+        \item Induction over $|I|$
         \item Remove variables $x_{ij}$ for minimal $i \in I$ from $f$
         \item Inductive assumption gives us $a' \in M_{I\setminus \{i\}}$ with $a'(f') \neq 0$
         \item Pick a $j$ such that $\K(x_{i j} t) \in \textcolor{deltaCol}{\Delta_I}$
@@ -294,12 +295,13 @@
 \end{frame}
 
 \begin{frame}{Summary}
+    \begin{theorem}<+->
+        For any $m > n$, every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
+    \end{theorem}
     \begin{itemize}[<+->]
-        \item If $d \leq n/2 + 1$, then definition of $\textcolor{Rcol}{R_I}$ via the pigeon dance and via $M_I$ are identical
-        \item Pigeons not in the dance do not affect its success, so $\textcolor{Rcol}{R_I}(t) = \textcolor{Rcol}{R_{\dom(t)}}(t)$
-        \item $\textcolor{Vcol}{V_d}$ is precisely polynomials identically zero on $M_I$
-        \item $\textcolor{Rcol}{R_d} \neq 0$
-        \item There is no refutation of \PHP with $d \leq n/2 +1$
+        \item If the degree is small, pigeons can complete the dance
+        \item You need to have $n/2 + 1$ pigeons to block enough holes
+        \item Only polynomials corresponding to locally consistent assignments are derivable
     \end{itemize}
 \end{frame}
 
