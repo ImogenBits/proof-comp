@@ -1,4 +1,4 @@
-\documentclass[xcolor={dvipsnames}, aspectratio=169]{beamer}
+\documentclass[xcolor={dvipsnames}, aspectratio=169, handout]{beamer}
 \usetheme{Darmstadt}
 \usecolortheme{dolphin}
 \usepackage[logic, complexity, graphs]{commondefns}
@@ -7,6 +7,8 @@
 \usepackage[style=alphabetic]{biblatex}
 \addbibresource{refs.bib}
 \usepackage{bussproofs}
+
+%\includeonlyframes{current}
 
 \title{Lower Bounds for the Polynomial Calculus\\via the ``Pigeon Dance''}
 \author{Imogen Hergeth}
@@ -48,8 +50,6 @@
 \colorlet{deltaCol}{amaranth}
 \colorlet{Rcol}{bleudefrance}
 \colorlet{Vcol}{darkorange}
-
-\includeonlyframes{current}
 
 \begin{document}
 \maketitle
@@ -196,6 +196,9 @@
     \begin{itemize}[<+->]
         \item Goal: define $\textcolor{Rcol}{R_I}(t)$ so that it is independent of $I \setminus \dom(t)$
         \item We first define $\textcolor{deltaCol}{\Delta_I}$ using the pigeon dance
+        \item The first pigeon flies to an unoccupied hole to its right
+        \item Repeat until all pigeons have moved once
+        \item If a pigeon cannot find an empty hole, the dance is aborted
     \end{itemize}
 \end{frame}
 
@@ -234,9 +237,8 @@
 
 \begin{frame}{Formalization}
     \begin{itemize}[<+->]
-        \item The first pigeon flies to an unoccupied hole to its right
-        \item Repeat until all pigeons have moved once
-        \item If a pigeon cannot find an empty hole, the dance is aborted
+        \item Consider terms $x_{i_1 j_1} \cdots x_{i_d j_d}$ with all $i$ and $j$ pairwise different
+        \item Variables occuring in term correspond to pigeon positions
         \item Define $\textcolor{deltaCol}{\Delta_I}$ to be the set of terms that let pigeons complete the dance
         \item $t \in \textcolor{deltaCol}{\Delta_I}$ independent of $I$ since pigeons not in the dance do not affect it
     \end{itemize}
