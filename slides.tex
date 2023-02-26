@@ -50,6 +50,7 @@
 \colorlet{deltaCol}{amaranth}
 %\colorlet{Rcol}{bleudefrance}
 \colorlet{Vcol}{bleudefrance}
+\colorlet{reqCol}{saffron}
 
 \begin{document}
 \maketitle
@@ -168,22 +169,35 @@
         \item Pigeons cannot share holes
         \item Possible for pigeons $I \subseteq [m]$ with $|I| \leq n$
         \item Locally valid assignments are injections $I \tomono [n]$
-        \item Corresponding varliable assignments are $M_I$
+        \item Corresponding variable assignments are $M_I$
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Locally valid assignments}
     \begin{itemize}[<+->]
-        \item $\textcolor{Vcol}{V_I}$ is the set of all polynomials with $a(f) = 0$ for all $a \in M_I$
-        \item Not all polynomials are identically zero on $M_I$
-        \item But, this definition completely ignores the degrees of the proofs!
-        \item It still works, but only if $t \in \textcolor{deltaCol}{\Delta_I}$ is independent of $I$
-        \item Use pigeon dance to see this
+        \item Characterize $\textcolor{Vcol}{V_I}$ as the set of all polynomials with $a(f) = 0$ for all $a \in M_I$
+        \item We're done! Clearly not all polynomials are identically zero on $M_I$
+        \item This definition completely ignores the degrees of the proofs!
+        \item Only works if whether $t \in \textcolor{deltaCol}{\Delta_I}$ is independent of $I \supseteq \dom(t)$
     \end{itemize}
 \end{frame}
 
 \section{The Pigeon Dance}
 \subsection{Ideas}
+
+\begin{frame}{Overview}
+    \begin{itemize}[<+->]
+        \item Goal:
+            \begin{itemize}
+                \item Use pigeon dance to characterize $\Delta_I$
+                \item Prove this $\Delta_I$ is exaclty the leading terms of underivable polynomials
+            \end{itemize}
+        \item Start with pigeons sitting in their holes
+        \item The first pigeon flies to an unoccupied hole to its right
+        \item Repeat until all pigeons have moved once
+        \item If a pigeon cannot find an empty hole, the dance is aborted
+    \end{itemize}
+\end{frame}
 
 \newcommand{\pigeon}[3]{
     \node#3 (pigeon#1) at (#2, 1) [label={[label distance=-.8cm]-145:#1}]
@@ -218,14 +232,12 @@
     \end{tikzpicture}
 \end{frame}
 
-\begin{frame}{The pigeon dance}
+\begin{frame}{Formalization}
     \begin{itemize}[<+->]
-        \item The first pigeon flies to an unoccupied hole to its right
-        \item Repeat until all pigeons have moved once
-        \item If a pigeon cannot find an empty hole, the dance is aborted
+        \item Consider partial injections $I \tomono [m]$ \qquad ($1 \mapsto 4, \enspace 2 \mapsto 1, \enspace 3 \mapsto 2$)
         \item Encode pigeon positions as terms \qquad (\textcolor{deltaCol}{$x_{1, 4} \, x_{2, 1} \, x_{3, 2}$})
         \item $\textcolor{deltaCol}{\Delta_I}$ is the set of terms that let pigeons complete the dance
-        \item $t \in \textcolor{deltaCol}{\Delta_I}$ independent of $I$ since pigeons not in the dance do not affect it
+        \item Whether $t \in \textcolor{deltaCol}{\Delta_I}$ is independent of $I$ since pigeons not in the dance do not affect it
     \end{itemize}
 \end{frame}
 
@@ -282,21 +294,23 @@
 
 \begin{frame}{Putting things together}
     \begin{itemize}[<+->]
-        \item Goal: prove polynomials $f \in \KK \textcolor{deltaCol}{\Delta_I}$ are not derivable
-        \item Each $f$ has a locally consistent assignment $a \in M_I$ with $a(f) \neq 0$
+        \item Goal: show pigeon dance correctly characterizes underivable polynomials
+        \item Formally: each $f \in \KK \textcolor{deltaCol}{\Delta_I}$ has an $a \in M_I$ with $a(f) \neq 0$
         \item Induction over $|I|$
         \item Remove variables $x_{ij}$ for minimal $i \in I$ from $f$
-        \item Inductive assumption gives us $a' \in M_{I\setminus \{i\}}$ with $a'(f') \neq 0$
-        \item Pick a $j$ such that $\K(x_{i j} t) \in \textcolor{deltaCol}{\Delta_I}$
+        \item Inductive assumption gives us $a' \in M_{I\setminus \{i\}}$ with $a'(f') \neq 0$ \hfill \textcolor{reqCol}{closure of $\textcolor{deltaCol}{\Delta_I}$}
+        \item Pick a $j$ such that $\K(x_{i j} t) \in \textcolor{deltaCol}{\Delta_I}$   \hfill \textcolor{reqCol}{lower bound}
         \item Extend assignment to $I$ with $a(f) \neq 0$
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Summary}
     \begin{itemize}[<+->]
-        \item Proven a lower bound for polynomial calculus proofs
-        \item If the degree is small, pigeons can complete the dance
-        \item You need to have $n/2 + 1$ pigeons to force a contradiction
+        \item Proven a lower bound $d \geq n/2 + 1$ for polynomial calculus proofs of \PHP
+        \item Characterize derivable polynomials \textcolor{Vcol}{$V_I$} through locally consistent assignments $M_I$
+        \item This only works if membership in $\textcolor{deltaCol}{\Delta_I}$ is independent of $I$
+        \item Characterize $\textcolor{deltaCol}{\Delta_I}$ through pigeon dance
+        \item This works since $\textcolor{deltaCol}{\Delta_I}$ is linearly independent over $M_I$
     \end{itemize}
 \end{frame}
 
