@@ -127,7 +127,6 @@
 \end{frame}
 
 \begin{frame}{Algebraic view of proofs}
-    \stepcounter{beamerpauses}
     \begin{itemize}[<+->]
         \item Think of polynomials not just as lines but as elements of \KK-algebras
         \item $\textcolor{Vcol}{V}$ are polynomials we can prove \hfill \textcolor{Vcol}{$xy + y + z$}
@@ -160,15 +159,16 @@
         Every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
     \end{theorem}
     \begin{itemize}[<+->]
-        \item Goal: $1 \not\in \textcolor{Vcol}{V_d} \Leftrightarrow \textcolor{Vcol}{V_d} \neq S(\KK)$
+        \item Goal: if $d < n/2 + 1$, then $1 \not\in \textcolor{Vcol}{V_d} \Leftrightarrow \textcolor{Vcol}{V_d} \neq S(\KK)$
         \item Characterize $\textcolor{Vcol}{V_d}$ in a way that lets us see this
         \item Prove this characterization is correct via the pigeon dance
     \end{itemize}
 \end{frame}
 
 \begin{frame}{\PHP constraints}
-    \stepcounter{beamerpauses}
     \begin{itemize}[<+->]
+        \item Polynomials in \PHP are constraints on assignments
+        \item Inference rules preserve constraints
         \item Pigeons cannot share holes
         \item Possible for pigeons $I \subseteq [m]$ with $|I| \leq n$
         \item Locally valid assignments are injections $I \tomono [n]$
