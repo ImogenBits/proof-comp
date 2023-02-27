@@ -78,7 +78,7 @@
 \begin{frame}{Definition}
     \begin{itemize}[<+->]
         \item Similar to sequent calculus, but lines are polynomials
-        \item We use multilinear polynomials $\Sn$\\
+        \item We use multilinear polynomials $S(\KK)$\\
             ($xy + xz + v \equiv x^2y + x^3z^5 + v$)
         \item Addition
         \begin{prooftree}
@@ -129,11 +129,12 @@
 \begin{frame}{Algebraic view of proofs}
     \stepcounter{beamerpauses}
     \begin{itemize}[<+->]
-        \item Think of polynomials not just as lines but as elements of a \KK-algebras
+        \item Think of polynomials not just as lines but as elements of \KK-algebras
         \item $\textcolor{Vcol}{V}$ are polynomials we can prove \hfill \textcolor{Vcol}{$xy + y + z$}
         \item $\textcolor{deltaCol}{\Delta}$ are leading terms of ones we cannot prove \hfill \textcolor{deltaCol}{$y$}
-        \item $\Sn \cong \KK \textcolor{deltaCol}{\Delta} \oplus \textcolor{Vcol}{V}$ \hfill $xy + z = -\textcolor{deltaCol}{y} + \textcolor{Vcol}{xy + y + z}$
-        \item Similarly $\textcolor{Vcol}{V_I}, \textcolor{deltaCol}{\Delta_I}$ using subset of variables $I$
+        \item $S(\KK) \cong \KK \textcolor{deltaCol}{\Delta} \oplus \textcolor{Vcol}{V}$ \hfill $xy + z = -\textcolor{deltaCol}{y} + \textcolor{Vcol}{xy + y + z}$
+        \item Similarly $\textcolor{Vcol}{V_d}, \textcolor{deltaCol}{\Delta_d}$ for proofs of bounded degrees
+        \item Investigate what $\textcolor{Vcol}{V_d}$ looks like
     \end{itemize}
 \end{frame}
 
@@ -159,10 +160,9 @@
         Every polynomial calculus refutation of \PHP must have degree at least $n/2 + 1$.
     \end{theorem}
     \begin{itemize}[<+->]
-        \item \PHP are constraints on pigeon assignments
-        \item Proofs combine them into more complex ones
-        \item Can only derive local constraints with small degrees
-        \item Pigeons can fly away to escape local contradictions
+        \item Goal: $1 \not\in \textcolor{Vcol}{V_d} \Leftrightarrow \textcolor{Vcol}{V_d} \neq S(\KK)$
+        \item Characterize $\textcolor{Vcol}{V_d}$ in a way that lets us see this
+        \item Prove this characterization is correct via the pigeon dance
     \end{itemize}
 \end{frame}
 
@@ -178,10 +178,11 @@
 
 \begin{frame}{Locally valid assignments}
     \begin{itemize}[<+->]
-        \item Characterize $\textcolor{Vcol}{V_I}$ as the set of all polynomials with $a(f) = 0$ for all $a \in M_I$
-        \item We're done! Clearly not all polynomials are identically zero on $M_I$
+        \item Define $\textcolor{Vcol}{V_I}$ as the set of all polynomials with $a(f) = 0$ for all $a \in M_I$
+        \item Claim: $\textcolor{Vcol}{V_d} = \bigcup_{|I| \leq d} V_I$
+        \item Clearly $a(1) \neq 0$ for all $a \in M_I, I \subseteq [m]$
         \item This definition completely ignores the degrees of the proofs!
-        \item Only works if whether $t \in \textcolor{deltaCol}{\Delta_I}$ is independent of $I \supseteq \dom(t)$
+        \item Only works if for all terms $t$, $t \in \textcolor{deltaCol}{\Delta_I}$ for either all or no $I \supseteq \dom(t)$
     \end{itemize}
 \end{frame}
 
@@ -191,9 +192,9 @@
 \begin{frame}{Overview}
     \begin{itemize}[<+->]
         \item Goal:
-            \begin{itemize}
-                \item Use pigeon dance to characterize $\Delta_I$
-                \item Prove this $\Delta_I$ is exaclty the leading terms of underivable polynomials
+            \begin{itemize}[<.->]
+                \item Use pigeon dance to characterize $\textcolor{deltaCol}{\Delta_I}$
+                \item Prove correctness
             \end{itemize}
         \item Start with pigeons sitting in their holes
         \item The first pigeon flies to an unoccupied hole to its right
@@ -240,7 +241,7 @@
         \item Consider partial injections $I \tomono [m]$ \qquad ($1 \mapsto 4, \enspace 2 \mapsto 1, \enspace 3 \mapsto 2$)
         \item Encode pigeon positions as terms \qquad (\textcolor{deltaCol}{$x_{1, 4} \, x_{2, 1} \, x_{3, 2}$})
         \item $\textcolor{deltaCol}{\Delta_I}$ is the set of terms that let pigeons complete the dance
-        \item Whether $t \in \textcolor{deltaCol}{\Delta_I}$ is independent of $I$ since pigeons not in the dance do not affect it
+        \item Membership in $\textcolor{deltaCol}{\Delta_I}$ is independent of $I$ since pigeons not in the dance do not affect it
     \end{itemize}
 \end{frame}
 
@@ -282,11 +283,11 @@
 
 \begin{frame}{The lower bound}
     \begin{theorem}<+->
-        If $|I| \leq (n+1) / 2$ and pigeons can complete the dance, then we can introduce a new pigeon
+        If $|I| \leq (n+1) / 2$ and $t \in \textcolor{deltaCol}{\Delta_I}$, then there is a hole $j$
         such that $\K(x_{ij} t) \in \textcolor{deltaCol}{\Delta_I}$.
     \end{theorem}
     \begin{proof}[Proof sketch\nopunct{}]<+->
-        At most $$
+        There are at most $$
             |\dom(t)| \leq |I \setminus \{i\}| \leq \frac{n - 1}{2}
         $$ pigeons involved in the dance, each occupying two holes. Place pigeon at unused hole and kill it there.
         The remaining pigeons can complete the dance since the moved hole was not used.
@@ -297,8 +298,8 @@
 
 \begin{frame}{Putting things together}
     \begin{itemize}[<+->]
-        \item Goal: show pigeon dance correctly characterizes underivable polynomials
-        \item Formally: each $f \in \KK \textcolor{deltaCol}{\Delta_I}$ has an $a \in M_I$ with $a(f) \neq 0$
+        \item Goal: show pigeon dance correctly characterizes $S(\KK) / \textcolor{Vcol}{V_I}$
+        \item In particular: each $f \in \KK \textcolor{deltaCol}{\Delta_I}$ has an $a \in M_I$ with $a(f) \neq 0$
         \item Induction over $|I|$
         \item Remove variables $x_{ij}$ for minimal $i \in I$ from $f$
         \item Inductive assumption gives us $a' \in M_{I\setminus \{i\}}$ with $a'(f') \neq 0$ \hfill \textcolor{reqCol}{closure of $\textcolor{deltaCol}{\Delta_I}$}
@@ -310,10 +311,10 @@
 \begin{frame}{Summary}
     \begin{itemize}[<+->]
         \item Proven a lower bound $d \geq n/2 + 1$ for polynomial calculus refutations of \PHP
-        \item Characterize derivable polynomials \textcolor{Vcol}{$V_I$} through locally consistent assignments $M_I$
+        \item Characterize derivable polynomials \textcolor{Vcol}{$V_d$} through locally consistent assignments $M_I$
         \item This only works if membership in $\textcolor{deltaCol}{\Delta_I}$ is independent of $I$
         \item Characterize $\textcolor{deltaCol}{\Delta_I}$ through pigeon dance
-        \item This works since $\textcolor{deltaCol}{\Delta_I}$ is linearly independent over $M_I$
+        \item Correct since $\textcolor{deltaCol}{\Delta_I}$ is linearly independent over $M_I$
     \end{itemize}
 \end{frame}
 
